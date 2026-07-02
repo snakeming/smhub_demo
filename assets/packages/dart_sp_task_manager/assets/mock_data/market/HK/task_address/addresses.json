@@ -1,0 +1,170 @@
+[
+    {
+      "name": "高座 Upper Tower",
+      "address": "66-68 土瓜灣道 To Kwa Wan Road",
+      "coordinate": "114.188656,22.3161019",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "旭日豪庭 Sunrise Villa",
+      "address": "19-23 浙江街 Chi Kiang Street",
+      "coordinate": "114.1902218,22.3144944",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "志昌工業大廈 Gee Chang Industrial Building",
+      "address": "108 落山道 Lok Shan Road",
+      "coordinate": "114.1907847,22.315276",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "陽光廣場 Sunshine Plaza",
+      "address": "17 崇安街 Sung On Street",
+      "coordinate": "114.1888509,22.3121854",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "恒豐工業大廈 Hang Fung Industrial Building",
+      "address": "2G 鶴園街 Hok Yuen Street",
+      "coordinate": "114.1884099,22.3112219",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "富恆工業大廈 Fu Hang Industrial Building",
+      "address": "1 鶴園東街 Hok Yuen Street East",
+      "coordinate": "114.1894301,22.3111676",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "益豐大廈 I-Feng Mansions",
+      "address": "237-239 土瓜灣道 To Kwa Wan Road",
+      "coordinate": "114.1888786,22.3152969",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "崇儉樓 Sung Kim Building",
+      "address": "81 崇潔街 Sung Kit Street",
+      "coordinate": "114.1889401,22.3116396",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "",
+      "address": "72-76B 土瓜灣道 To Kwa Wan Road",
+      "coordinate": "114.1891577,22.316331",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "富薈土瓜灣酒店 iclub To Kwa Wan Hotel",
+      "address": "8 下鄉道 Ha Heung Road",
+      "coordinate": "114.1888113,22.3160465",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "龍德大廈 Lung Teck Mansion",
+      "address": "25 銀漢街",
+      "coordinate": "114.1892629,22.3146418",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "寶德大廈 Po Teck Mansion",
+      "address": "27 浙江街",
+      "coordinate": "114.1895638,22.3146613",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "崇廉樓 Sung Lim Building",
+      "address": "91 崇潔街 Sung Kit Street",
+      "coordinate": "114.1890796,22.3113768",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "美景樓第二期 Mei King Mansion Phase II",
+      "address": "78-84 落山道 Lok Shan Road",
+      "coordinate": "114.1893875,22.3158412",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "僑裕大樓 Kiu Yu Mansion",
+      "address": "86-94 落山道 Lok Shan Road",
+      "coordinate": "114.1896563,22.3156802",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "僑發大樓 Kiu Fat Mansion",
+      "address": "96-106 落山道 Lok Shan Road",
+      "coordinate": "114.1899425,22.3154564",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "文信工業大廈 Man Shun Factory Building",
+      "address": "20 浙江街 Chi Kiang Street",
+      "coordinate": "114.1900224,22.3150264",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "福成工業大廈 Fook Shing Industrial Building",
+      "address": "1A 旭日街 Yuk Yat Street",
+      "coordinate": "114.1900224,22.3150264",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "凱旋工商中心三期 Kaiser Estate Phase III",
+      "address": "18 民樂街 Man Lok Street",
+      "coordinate": "114.1887584,22.3104689",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "凱旋工商中心二期 Kaiser Estate Phase II",
+      "address": "47-53 民裕街 Man Yue Street",
+      "coordinate": "114.1888851,22.309713",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "",
+      "address": "31 浙江街 Chi Kiang Street",
+      "coordinate": "114.1888926,22.3149846",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "宏豐大廈 Wang Fung Building",
+      "address": "31-33 浙江街 Chi Kiang Street",
+      "coordinate": "114.1887723,22.3151928",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "",
+      "address": "13-15 美景街 Mei King Street",
+      "coordinate": "114.1903608,22.3163302",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    },
+    {
+      "name": "",
+      "address": "9-11 美景街 Mei King Street",
+      "coordinate": "114.1903043,22.3162726",
+      "contact_name": "John",
+      "contact_phone": "92345678"
+    }
+  ]

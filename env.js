@@ -1,0 +1,4 @@
+window.deploymentConfig = { 
+  PRE_LOGIN_CONFIG_BASE_URL: '${PRE_LOGIN_CONFIG_BASE_URL}', 
+  DEPLOYMENT_KEY: '${DEPLOYMENT_KEY}'
+};

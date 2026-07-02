@@ -1,0 +1,1092 @@
+[
+    {
+        "id": 11,
+        "type_name": "PARCEL_IN",
+        "name": {
+            "en": "Parcel In",
+            "zh-HK": "入倉"
+        },
+        "description": {
+            "en": "Scan parcel tracking code to check into hub; system prompts for next hub or current hub for suggested sortation. Parcel could just put to temp area or labeled container (without logging container).",
+            "zh-HK": "包裹入倉；系統提示下一營運點或當前營運點以建議分揀。包裹可放入臨時區或標籤容器（無需登記容器）。"
+        },
+        "subject": 2,
+        "target": 1,
+        "category": 1,
+        "mode": 1,
+        "action": "Status: CHECKED_IN; location: temp working area.",
+        "final_comarison": "20260323 RECEIVE_PARCEL",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4034
+                ],
+                "next_hub_allowed_status": [
+                    4001,
+                    4003,
+                    4010,
+                    4011,
+                    4013,
+                    4014,
+                    4022
+                ],
+                "result_status": 4011,
+                "allowed_target_type": 1,
+                "update_type": [
+                    720,
+                    6
+                ],
+                "pending_action": 120,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "type_name": "DOORSIDE",
+        "name": {
+            "en": "Delivery to Doorstep",
+            "zh-HK": "上門派送"
+        },
+        "description": {
+            "en": "Parcel should be sorted for last mile delivery, execute this action to start courier delivery task.",
+            "zh-HK": "包裹應該被分揀進行最後一哩送貨，執行此操作以開始快遞送貨任務。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 4,
+        "mode": 1,
+        "action": "Status: OUT_FOR_DELIVERY; location: container (courier) or end user (self-pickup).",
+        "remark": "porper parcel status should be `PENDING_DELIVERY`, but not enforced.",
+        "final_comarison": "20260323 ASSIGN_COURIER: assign to courier",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4031,
+                    4011
+                ],
+                "result_status": 4032,
+                "allowed_target_type": 1,
+                "update_type": [
+                    720
+                ],
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "type_name": "PARTNER_PICKUP",
+        "name": {
+            "en": "Partner Pickup",
+            "zh-HK": "合作夥伴取件"
+        },
+        "description": {
+            "en": "Scan parcel or container for partner pickup at hub; system prompts for partner confirmation (e.g., scan partner ID or signature).",
+            "zh-HK": "在營運點掃描包裹或容器進行合作夥伴取件；系統提示合作夥伴確認（例如，掃描合作夥伴ID或簽名）。"
+        },
+        "subject": 2,
+        "target": 81,
+        "category": 4,
+        "mode": 1,
+        "action": "Status: OUT_FOR_DELIVERY; location: with courier.",
+        "final_comarison": "20260323 COURIER_PICKUP: courier pickup",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 221,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4031
+                ],
+                "result_status": 4003,
+                "allowed_target_type": 81,
+                "update_type": [
+                    720
+                ],
+                "pending_action": 23,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "type_name": "SELF_PICKUP",
+        "name": {
+            "en": "Self Pickup",
+            "zh-HK": "自取"
+        },
+        "description": {
+            "en": "User arrived at hub; scan parcel tracking code for end-user self-pickup.",
+            "zh-HK": "用戶到達營運點；掃描包裹追蹤碼進行用戶自取。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 4,
+        "mode": 3,
+        "action": "Change parcel status to DELIVERED; update location to end user.",
+        "final_comarison": "20260323 SELF_PICKUP: customer pickup",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            },
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 2,
+                "scan_entity_type": 226,
+                "is_required": 1,
+                "allow_multiple": 0
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4040,
+                    4011,
+                    4043
+                ],
+                "result_status": 4033,
+                "allowed_target_type": 226,
+                "update_type": [
+                    720
+                ],
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "type_name": "DELIVERY_SUCCESS",
+        "name": {
+            "en": "Delivery Success",
+            "zh-HK": "配送成功"
+        },
+        "description": {
+            "en": "Scan parcel tracking code and confirm delivery to end user.",
+            "zh-HK": "掃描包裹追蹤碼並確認送貨給用戶。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 4,
+        "mode": 3,
+        "action": "Status: DELIVERED; location: end user.",
+        "final_comarison": "20260323 DELIVERY_SUCCESS: delivered",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4032,
+                    4038
+                ],
+                "result_status": 4033,
+                "allowed_target_type": 226,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "type_name": "DELIVERY_FAILURE",
+        "name": {
+            "en": "Delivery Failure",
+            "zh-HK": "配送失敗"
+        },
+        "description": {
+            "en": "Scan parcel tracking code after failed attempt; prompt for reason.",
+            "zh-HK": "失敗後掃描包裹追蹤碼；提示原因。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 4,
+        "mode": 3,
+        "action": "Status: DELIVERY_FAILED; location: back to hub.",
+        "final_comarison": "20260323 DELIVERY_FAILURE: delivery failed",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4032,
+                    4038
+                ],
+                "result_status": 4034,
+                "allowed_target_type": null,
+                "update_type": null,
+                "pending_action": 131,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "type_name": "SHELVING",
+        "name": {
+            "en": "Shelving",
+            "zh-HK": "上架"
+        },
+        "description": {
+            "en": "Shelve parcel to rack, typically for self pickup; scan rack\/shelf label, then parcel code to shelve.",
+            "zh-HK": "包裹上架, 通常用於自取點; 掃描貨架標籤，然後包裹碼上架。"
+        },
+        "subject": 2,
+        "target": 20,
+        "category": 1,
+        "mode": 1,
+        "action": "Location: fixed container; status: SHELVED.",
+        "final_comarison": "20260323 PUTAWAY_RACK: put parcel to rack.",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 2,
+                "scan_entity_type": 20,
+                "is_required": 1,
+                "allow_multiple": 0
+            },
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4014
+                ],
+                "result_status": 4012,
+                "allowed_target_type": 20,
+                "update_type": [
+                    20
+                ],
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "type_name": "PACKING",
+        "name": {
+            "en": "Load parcel to container",
+            "zh-HK": "入袋"
+        },
+        "description": {
+            "en": "Pack parcel into container for next step delivery",
+            "zh-HK": "包裹裝進容器，待下一步配送"
+        },
+        "subject": 2,
+        "target": 21,
+        "category": 3,
+        "mode": 1,
+        "action": "Location: movable container; status: IN_CONTAINER.",
+        "final_comarison": "20260323 LOAD_CONTAINER: load parcel into container.",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 2,
+                "scan_entity_type": 21,
+                "is_required": 1,
+                "allow_multiple": 0
+            },
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4014,
+                    4012
+                ],
+                "result_status": 4013,
+                "allowed_target_type": 21,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "update_type": [
+                    21
+                ],
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "type_name": "UNPACKING",
+        "name": {
+            "en": "Unloading parcels from container (check-in parcel to temp area)",
+            "zh-HK": "卸載從容器（包裹到臨時區）"
+        },
+        "description": {
+            "en": "Scan container label for unloading (imply unseal), scan parcel code(s) to check-in to temp area.",
+            "zh-HK": "掃描容器標籤卸載（意味著開封），掃描包裹碼入庫到臨時區。"
+        },
+        "subject": 2,
+        "target": 21,
+        "category": 1,
+        "mode": 1,
+        "action": "Location: temp working area; status: EXTRACTED.",
+        "final_comarison": "20260323 UNLOAD_CONTAINER: unload parcel from container to temp area.",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 2,
+                "scan_entity_type": 21,
+                "is_required": 1,
+                "allow_multiple": 0
+            },
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4013
+                ],
+                "next_hub_allowed_status": [
+                    4013
+                ],
+                "result_status": 4011,
+                "allowed_target_type": 21,
+                "pending_action": 120,
+                "shipment_event_type": null,
+                "update_type": [
+                    720
+                ],
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "type_name": "READY_FOR_SELF_PICKUP",
+        "name": {
+            "en": "Ready for Self-Pickup",
+            "zh-HK": "可取件"
+        },
+        "description": {
+            "en": "Mark parcel as ready for self-pickup notification.",
+            "zh-HK": "標記包裹已準備好，發送取件通知。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: READY_FOR_PICKUP.",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            },
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 2,
+                "scan_entity_type": 20,
+                "is_required": 0,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4012,
+                    4042
+                ],
+                "result_status": 4040,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "type_name": "DELIVER_TO_PICKUP_POINT",
+        "name": {
+            "en": "Deliver to Pickup Point",
+            "zh-HK": "送至取件點"
+        },
+        "description": {
+            "en": "Parcel is delivering to a (third party) pickup point.",
+            "zh-HK": "包裹正在運送至（第三方）取件點。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 4,
+        "mode": 1,
+        "action": "Status: OUT_FOR_DELIVERY; location: container (courier) or end user (self-pickup).",
+        "remark": "",
+        "final_comarison": "20260323 ASSIGN_COURIER: assign to courier",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4042
+                ],
+                "result_status": 4042,
+                "allowed_target_type": 1,
+                "update_type": [
+                    720
+                ],
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "type_name": "READY_AT_PICKUP_POINT",
+        "name": {
+            "en": "Ready at Pickup Point",
+            "zh-HK": "已到達取件點"
+        },
+        "description": {
+            "en": "Mark parcel as ready for pickup at the pickup point.",
+            "zh-HK": "標記包裹已到達取件點，準備取件。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: READY_FOR_PICKUP.",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            },
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 2,
+                "scan_entity_type": 20,
+                "is_required": 0,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4012,
+                    4042
+                ],
+                "result_status": 4043,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "type_name": "SEAL_CONTAINER",
+        "name": {
+            "en": "Seal Container",
+            "zh-HK": "密封容器"
+        },
+        "description": {
+            "en": "Scan movable container label to seal before shipment.",
+            "zh-HK": "掃描可移動容器標籤密封。"
+        },
+        "subject": 21,
+        "target": null,
+        "category": 3,
+        "mode": 3,
+        "action": "Status: SEALED.",
+        "final_comarison": "20260323 CLOSE_CONTAINER: seal container ",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 21,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.container-operation-rule",
+                "allowed_status": [
+                    4200,
+                    4201
+                ],
+                "result_status": 4220,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "type_name": "HOLD",
+        "name": {
+            "en": "Hold",
+            "zh-HK": "扣留"
+        },
+        "description": {
+            "en": "Hold parcel; parcel has issue to be resolved, temporarily hold for further handling.",
+            "zh-HK": "包裹扣留；包裹有待解決問題，暫時扣留的包裹待進一步處理。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: HOLD.",
+        "final_comarison": "20260323 HOLD_PARCEL: hold",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4012,
+                    4013
+                ],
+                "banned_status": [
+                    4033,
+                    4073,
+                    4074,
+                    4080
+                ],
+                "result_status": 4074,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 74,
+        "type_name": "RETURN_TO_SENDER",
+        "name": {
+            "en": "Return",
+            "zh-HK": "退回"
+        },
+        "description": {
+            "en": "Scan parcel or container code to mark as return to sender. Returned parcels\/containers cannot be processed until resolved.",
+            "zh-HK": "退回寄件人;掃描包裹或容器碼標記為退回寄件人。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: RETURNED.",
+        "final_comarison": "20260323 RETURN_TO_SENDER: return to sender decision",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 0
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4012,
+                    4013
+                ],
+                "banned_status": [
+                    4033,
+                    4073,
+                    4074,
+                    4080
+                ],
+                "result_status": 4072,
+                "allowed_target_type": null,
+                "pending_action": 74,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 81,
+        "type_name": "COMPLETE_RETURN",
+        "name": {
+            "en": "Complete Return to Sender",
+            "zh-HK": "完成退回寄件人"
+        },
+        "description": {
+            "en": "Mark return to sender as completed. Parcel status changes to RETURNED.",
+            "zh-HK": "標記退回寄件人已完成。包裹狀態變更為已退回。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: RETURNED.",
+        "final_comarison": "20260528 COMPLETE_RETURN: complete return to sender",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4072
+                ],
+                "result_status": 4073,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 75,
+        "type_name": "DAMAGED",
+        "name": {
+            "en": "Mark Damaged",
+            "zh-HK": "標記損壞"
+        },
+        "description": {
+            "en": "Scan parcel or container code to mark as damaged. Damaged parcels\/containers cannot be processed until resolved.",
+            "zh-HK": "掃描包裹或容器碼標記為損壞。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: DAMAGED.",
+        "final_comarison": "20260323 MARK_DAMAGED: damaged ",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 0
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": null,
+                "banned_status": [
+                    4033,
+                    4073,
+                    4080
+                ],
+                "result_status": 4075,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 76,
+        "type_name": "LOST",
+        "name": {
+            "en": "Mark Lost",
+            "zh-HK": "標記遺失"
+        },
+        "description": {
+            "en": "Scan parcel or container code to mark as lost. Lost parcels\/containers cannot be processed until resolved.",
+            "zh-HK": "掃描包裹或容器碼標記為遺失。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: LOST.",
+        "final_comarison": "20260323 MARK_LOST: lost ",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 0
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": null,
+                "banned_status": [
+                    4033,
+                    4073,
+                    4080
+                ],
+                "result_status": 4080,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 79,
+        "type_name": "UNHOLD",
+        "name": {
+            "en": "Release from Hold",
+            "zh-HK": "解除扣留"
+        },
+        "description": {
+            "en": "Scan parcel code to release from hold and resume normal processing.",
+            "zh-HK": "掃描包裹碼解除扣留，恢復正常處理。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 5,
+        "mode": 3,
+        "action": "Status: CHECKED_IN.",
+        "final_comarison": "20260528 UNHOLD: release parcel from hold",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4074,
+                    4080,
+                    4075
+                ],
+                "result_status": 4011,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 85,
+        "type_name": "REPRINT_LABEL",
+        "name": {
+            "en": "Reprint Label",
+            "zh-HK": "重印標籤"
+        },
+        "description": {
+            "en": "Scan parcel or container code to reprint label.",
+            "zh-HK": "掃描包裹或容器碼重印標籤。"
+        },
+        "subject": 221,
+        "target": null,
+        "category": 6,
+        "mode": 3,
+        "action": "No change; generate printout.",
+        "final_comarison": "20260323 REPRINT_LABEL: reprint label",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 221,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": null,
+                "result_status": null,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            },
+            {
+                "__component": "hub.container-operation-rule",
+                "allowed_status": null,
+                "result_status": null,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 89,
+        "type_name": "CONTAINER_QUERY",
+        "name": {
+            "en": "Container Query",
+            "zh-HK": "容器查詢"
+        },
+        "description": {
+            "en": "Scan container code to query.",
+            "zh-HK": "掃描容器碼查詢。"
+        },
+        "subject": 21,
+        "target": null,
+        "category": 6,
+        "mode": 3,
+        "action": "No change; return results.",
+        "final_comarison": "20260323 CONTAINER_INFO: show info",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 21,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.container-operation-rule",
+                "allowed_status": null,
+                "result_status": null,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 93,
+        "type_name": "CONTAINER_IN",
+        "name": {
+            "en": "Container In (arrived at hub)",
+            "zh-HK": "容器入倉（抵達營運點）"
+        },
+        "description": {
+            "en": "Scan incoming movable container label; infers shipment arrival.",
+            "zh-HK": "掃描進來可移動容器標籤；推斷運單到達。"
+        },
+        "subject": 21,
+        "target": null,
+        "category": 1,
+        "mode": 1,
+        "action": "Status: ARRIVED; location: current hub.",
+        "final_comarison": "20260323 RECEIVE_CONTAINER",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 21,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.container-operation-rule",
+                "allowed_status": [
+                    4220,
+                    4230,
+                    4240
+                ],
+                "result_status": 4241,
+                "allowed_target_type": 1,
+                "pending_action": 25,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 94,
+        "type_name": "CONTAINER_UNLOADED",
+        "name": {
+            "en": "Container Unloaded",
+            "zh-HK": "容器完成卸載"
+        },
+        "description": {
+            "en": "Scan container code to confirm unloading.",
+            "zh-HK": "掃描容器碼確認卸載。"
+        },
+        "subject": 21,
+        "target": null,
+        "category": 1,
+        "mode": 1,
+        "action": "Status: UNLOADED.",
+        "final_comarison": "20260323 UNLOAD_CONTAINER: container unloaded",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 21,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.container-operation-rule",
+                "allowed_status": [
+                    4241
+                ],
+                "result_status": 4250,
+                "allowed_target_type": null,
+                "pending_action": null,
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    },
+    {
+        "id": 120,
+        "type_name": "SORT_PARCEL",
+        "name": {
+            "en": "Sortation",
+            "zh-HK": "分揀"
+        },
+        "description": {
+            "en": "Parcel sortation. Scan parcel code; show the next action (stream); if the action has linked with the storage (rack\/container), show the storage info as well.",
+            "zh-HK": "掃描包裹碼，然後貨架標籤進行分揀。"
+        },
+        "subject": 2,
+        "target": null,
+        "category": 2,
+        "mode": 2,
+        "action": "Location: fixed container; status: SORTED.",
+        "final_comarison": "20260323 SORT_PARCEL: sort parcel to rack",
+        "steps": [
+            {
+                "__component": "hub.operation-rule-scan-step",
+                "scan_purpose": 1,
+                "scan_entity_type": 2,
+                "is_required": 1,
+                "allow_multiple": 1
+            }
+        ],
+        "operation_rule": [
+            {
+                "__component": "hub.parcel-operation-rule",
+                "allowed_status": [
+                    4011,
+                    4012,
+                    4013
+                ],
+                "next_hub_allowed_status": null,
+                "result_status": 4014,
+                "allowed_target_type": 1,
+                "pending_action": null,
+                "update_type": [
+                    6
+                ],
+                "shipment_event_type": null,
+                "active": 1
+            }
+        ]
+    }
+]

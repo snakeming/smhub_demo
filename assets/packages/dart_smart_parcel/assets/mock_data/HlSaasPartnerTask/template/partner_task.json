@@ -1,0 +1,84 @@
+{
+    "id": 2,
+    "tenant": 1000000,
+    "job": 1,
+    "sender": 1,
+    "hub": 2,
+    "zone": null,
+    "flow": 1,
+    "task_pool": 21,
+    "title": "Food Delivery - 014",
+    "content":
+        "Order#: publicOrderNumber: not supported yet\nClient Order#: \nType: Last mile delivery\n\n",
+    
+    "start_time": 1723619307,
+    "date": "2025-03-09",
+    "time_slot": null,
+    "type": 2,
+    "service_time": 10,
+    "start": [
+      {
+        "__component": "common.task-address",
+        "name": "Mr Open",
+        "phone": "123123",
+        "address": "長沙灣荔枝角道 深水埗運動場籃球場",
+        "coordinate": "114.15104590250138,22.336649025621682"
+      }
+    ],
+    "end": [
+      {
+        "__component": "common.task-address",
+        "name": "014",
+        "phone": "123123",
+        "address": "MeiFoo",
+        "coordinate": "114.13789468311754,22.33743963819145"
+      }
+    ],
+    "service_fee": {
+      "__component": "common.service-fee",
+      "evaluation_type": 1,
+      "fee_status": 1,
+      "service_fee": 20.1
+    },
+    "items": [
+      {
+        "__component": "sm.saas-work-order-item-basic-description",
+        "description": "apple",
+        "amount": 10
+      },
+      {
+        "__component": "sm.saas-work-order-item-basic-description",
+        "description": "pie",
+        "amount": 3
+      }
+    ],
+    "start_task_validation": [
+      {
+        "__uuid": "d52b3ebe-6c6b-4fb7-9175-2f9e769c5ae7",
+        "__component": "flow.standard-task-validation-sequence",
+        "step": 1
+      },
+      {
+        "__uuid": "9a1a7dbe-f161-4ce5-816f-7cfa5a67168e",
+        "__component": "flow.standard-task-validation-sequence",
+        "step": 2
+      }
+    ],
+    "end_task_validation": [
+      {
+        "__uuid": "850ee361-20ac-4622-b5c1-67181f85e6f3",
+        "__component": "flow.standard-task-validation-sequence",
+        "step": 1
+      },
+      {
+        "__component": "flow.tenant-task-validation-sequence",
+        "step": 2,
+        "__uuid": "bc550e79-0d0a-463b-9557-9f6b9036bc68_inline"
+      }
+    ],
+    "partner_accept_time": 0,
+    "partner_start_time": 0,
+    "partner_end_time": 0,
+    "status_code": 405,
+    "status_group": 20
+  }

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Welcome!",
+    "description": "This is the first slide of our awesome app.",
+    "image": "onboarding/slide_1.png"
+  },
+  {
+    "title": "Discover Features",
+    "description": "Explore all the cool things you can do.",
+    "image": "onboarding/slide_2.png"
+  },
+  {
+    "title": "Get Started",
+    "description": "You are all set to begin your journey.",
+    "image": "onboarding/slide_3.png"
+  }
+]

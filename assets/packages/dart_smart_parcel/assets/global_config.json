@@ -1,0 +1,32 @@
+{
+    "zone_id": 1,
+    "zone_name": "test",
+    "app_env": "dev",
+    
+    "api_url": {
+        "baseUrl": "http://localhost:8080",
+        "viewModel": {
+            "cacheMode": "files",
+            "apiUrl": "http://localhost:8080/ContentBuilder/ViewModel/"
+        },
+        "restful": {
+            "apiUrl": "http://localhost:8080/Restful/"
+        },
+        "permission": {
+            "apiUrl": "http://localhost:8080/Permission/"
+        },
+        "manifest": {
+            "apiUrl": "http://localhost:8080/Manifest/"
+        },
+        "refreshToken": {
+            "apiUrl": "http://localhost:8080/RefreshToken/"
+        },
+        "csrfToken": {
+            "apiUrl": "http://localhost:8080/CsrfToken/"
+        },
+        "login": {
+            "apiUrl": "http://localhost:8080/Login/"
+        }
+    },
+    "market": ["HK", "TH", "VN"]
+}

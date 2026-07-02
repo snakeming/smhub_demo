@@ -1,0 +1,71 @@
+{
+    "id": 1,
+    "tenant": 1000000,
+    "flow": 1,
+    "sender": 1,
+    "hub": 2,
+    "dispatch_pool": 21,
+    "dispatch_pool_item": 1,
+    "start_time": 0,
+    "end_time": null,
+    "title": "Food Delivery - 014",
+    "route_description": "土瓜灣 > 土瓜灣",
+    "tags": null,
+    "overview":
+        "Order#: publicOrderNumber: not supported yet\nClient Order#: \nType: Last mile delivery\n\n",
+    "content":
+        "Order#: publicOrderNumber: not supported yet\nClient Order#: \nType: Last mile delivery\n\n",
+    "type": 2,
+
+    "start": [
+      {
+        "__component": "common.task-address",
+        "name": "014",
+        "phone": "123123",
+        "address": "土瓜灣 014 ",
+        "coordinate": "114.188837,22.31893"
+      }
+    ],
+    "end": [
+      {
+        "__component": "common.task-address",
+        "name": "Test",
+        "phone": "91234567",
+        "address": "土瓜灣街市, 土瓜灣馬頭圍道165號, 土瓜灣, Kowloon",
+        "coordinate": "114.18809530553193,22.317278302747624"
+      }
+    ],
+    "service_fee": {
+      "__component": "common.service-fee",
+      "evaluation_type": 1,
+      "fee_status": 1,
+      "service_fee": 10.1
+    },
+    "start_task_validation": [
+      {
+        "__uuid": "d52b3ebe-6c6b-4fb7-9175-2f9e769c5ae7",
+        "__component": "flow.standard-task-validation-sequence",
+        "step": 1
+      },
+      {
+        "__uuid": "9a1a7dbe-f161-4ce5-816f-7cfa5a67168e",
+        "__component": "flow.standard-task-validation-sequence",
+        "step": 2
+      }
+    ],
+    "end_task_validation": [
+      {
+        "__uuid": "850ee361-20ac-4622-b5c1-67181f85e6f3",
+        "__component": "flow.standard-task-validation-sequence",
+        "step": 1
+      },
+      {
+        "__component": "flow.tenant-task-validation-sequence",
+        "step": 2,
+        "__uuid": "bc550e79-0d0a-463b-9557-9f6b9036bc68_inline"
+      }
+     
+    ],
+    "status_group": 20
+    
+  }

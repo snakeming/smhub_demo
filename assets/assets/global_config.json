@@ -1,0 +1,8 @@
+{
+    "zone_id": 1,
+    "zone_name": "test",
+    "app_env": "dev",
+    "api_url": {
+        "baseUrl": "http://localhost:8000/Milely"
+    }
+}
