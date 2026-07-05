@@ -1,5 +1,4 @@
-window.deploymentConfig = {
-  PRE_LOGIN_CONFIG_BASE_URL: 'https://miinternal-dev-a.milely.net/api/Milely/',
-  DEPLOYMENT_KEY: 'miinternal-dev-a',
-  APP_ENV: 'dev'
+window.deploymentConfig = { 
+  PRE_LOGIN_CONFIG_BASE_URL: '${PRE_LOGIN_CONFIG_BASE_URL}', 
+  DEPLOYMENT_KEY: '${DEPLOYMENT_KEY}'
 };
